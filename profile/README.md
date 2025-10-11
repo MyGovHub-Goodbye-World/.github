@@ -23,6 +23,12 @@ Maintaining hundreds of separate platforms is expensive and inefficient for agen
 
 Real voices and media reports confirm this problem, citizens complaining about app failures on Reddit, and The Sun reporting how duplication of nearly 300 apps has eroded trust.
 
+
+## 🗺️ Architectural Diagram
+<!-- ![Architecture Diagram](assets/Full_Architectural_Diagram.png) -->
+<img src="assets/Full_Architectural_Diagram.png" alt="The full Architecture Diagram of this system"/>
+
+
 ## ⚙️ Technical Architecture
 
 MyGovHub’s architecture is a multi-layered, serverless ecosystem designed to process eKYC verification, document analysis, and conversational workflows through a unified government chatbot interface.
@@ -135,10 +141,6 @@ All data persistence is managed by MongoDB Atlas, providing a fully managed NoSQ
     - MongoDB Realm Triggers → AWS Lambda (event-driven updates)
     - Backend MCP fetches and updates documents via Atlas Data API
     - Indexed searches accelerate eKYC lookups and document matching.
-
-## 🗺️ Architectural Diagram
-<!-- ![Architecture Diagram](assets/Full_Architectural_Diagram.png) -->
-<img src="assets/Full_Architectural_Diagram.png" alt="The full Architecture Diagram of this system"/>
 
 
 ## 🌟 Novelty
