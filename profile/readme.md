@@ -24,26 +24,118 @@ Maintaining and managing numerous separate portals results in increased operatio
 
 MyGov Hub addresses these issues by unifying multiple services into one accessible, cost-efficient, and user-friendly platform.
 
-
-
-
-
 ## ⚙️ Technical Architecture
-MyGov Hub's architecture is a multi-layered, serverless system designed for efficient processing of user requests, particularly those involving document analysis and voice commands.
 
-* **Front-end & API Gateway**: The user-facing application captures input via document uploads or voice commands. The **Model Context Protocol (MCP)** acts as a conceptual framework that governs how session state and contextual information are managed and passed between different services. It ensures the conversation flow remains coherent and stateful.
-* **Orchestration Pipeline (!!!!!!!!!!!!!!!!!!!)**: **AWS Lambda** !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-* **Document Processing (Amazon Textract & Bedrock)**:
-    * **Amazon Textract** is a machine learning service that extracts text, handwriting, and data from uploaded documents. It's used for **Identity Verification** (from an IC) and **Document Classification** (from forms or bills).
-    * **Amazon Bedrock**, a managed service providing access to leading foundation models, transforms the raw text from Textract into structured, actionable data. It performs **Data Serialization** into JSON, **Document Categorization** (e.g., "tax filing"), and **Intent Recognition** (e.g., "pay summon"). The data is passed to Bedrock with the context provided by the MCP.
-* **Data Storage (Amazon S3 & SQLite)**:
-    * **MongoDB** 
-    * **Amazon S3** (Simple Storage Service) is the highly scalable object storage for all user-submitted files. It also generates secure, temporary pre-signed URLs for things like transaction receipts.
-    * **SQLite** is a lightweight, file-based relational database used for **Local Chat Memory**. This allows the conversational AI to remember previous interactions and provide coherent, contextual responses without constant calls to a cloud database, which is a key function of the MCP.
-* **Speech-to-Text (STT)**: A dedicated function converts a user's spoken voice command into a text string, which is then processed through the same pipeline as a text-based request.
+MyGovHub’s architecture is a multi-layered, serverless ecosystem designed to process eKYC verification, document analysis, and conversational workflows through a unified government chatbot interface.
 
+It leverages AWS cloud services, MongoDB Atlas, and a React Native frontend, ensuring scalability, fault tolerance, and modularity across all major functional domains.
 
+The architecture is organized into four layers:
+1. Layer I - Frontend (User Interaction),
+2. Layer II - Backend MCP (Middleware & Application Logic),
+3. Layer III - Backend Services (Specialized Microservices), and
+4. Layer IV - Database (Data Storage).
 
+### Layer I - Frontend (User Interaction)
+
+The React Native application serves as the main entry point for users. It mimics a WhatsApp-style conversational interface, integrating text, image, and voice interactions.
+
+This layer is responsible for capturing user input and displaying responses. It includes:
+
+1. **Mobile Application (React Native + Expo):**
+    - Provides voice and text input for communication with the chatbot.
+    - Integrates a local SQLite database to temporarily cache session data and uploaded media.
+    - Uses Axios-based REST API calls to communicate securely with the Backend MCP layer via HTTPS endpoints.
+    - Handles user registration, eKYC onboarding, and payment confirmations.
+    - Implements OTP verification and facial recognition steps during identity registration.
+
+2. **eKYC Onboarding Flow:**
+    - Users capture a selfie and upload their identity documents (e.g., IC, passport).
+    - The app sends these images to the eKYC Backend API, uploading to AWS S3 via signed URLs for verification.
+    - Triggers document validation and text extraction service through an API call.
+    - Integrates with the OTP Verification API to confirm user identity.
+    - Integrates with the Face Recognition API to verify selfie against ID photo.
+    - Upon successful verification, user data is stored in the MongoDB database.
+
+3. **Chatbot Interface:**
+    - Users interact with the chatbot to request services, upload documents, and receive responses.
+    - Supports multimodal input (text, image, voice, and file upload) and output (text, image, links, and files).
+    - Captures user input and sends it to the Backend MCP layer via REST API calls.
+    - Displays responses received from the Backend MCP layer.
+    - Integrates notification service for reminders, transaction alerts, and OTP messages.
+
+### Layer II - Backend MCP (Middleware & Application Logic)
+The Backend MCP (MyGov Central Processor) orchestrates all API calls, workflow logic, and integration between the frontend and backend microservices.
+
+It is built entirely on Amazon Bedrock, AWS Lambda functions, API Gateway, and MongoDB Atlas triggers for event-driven workflows.
+
+- **Core Responsibilities:**
+    - Manage session state, route API requests, and invoke appropriate Lambda functions.
+    - Handle message processing, LLM integration, and response generation for chat sessions.
+    - Bridge communication between frontend (React Native app) and backend microservices.
+    - Amazon Bedrock is used for LLM inference and response generation.
+
+- **Key Components:**
+    - Amazon Bedrock: Provide comprehensive, secure and flexible access to leading foundation models to build generative AI app and agent. It powers the conversational AI, handling intent recognition, response generation, and context management.
+    - AWS Lambda: Execute backend business logic, including API integrations, database operations, and workflow orchestration.
+    - MongoDB Atlas Triggers: Execute Lambda functions in response to database events, such as checking status for government services and payment confirmations.
+
+- **Conversation Management:**
+    - The MCP maintains a session state for each user, tracking conversation history and context. This ensures coherent, multi-turn conversations.
+    - Each session is uniquely identified via `session_id`.
+    - Conversation context is stored in MongoDB (short-term) and fetched on each request.
+    - AI responses are generated via AWS Bedrock LLM API, processed, and sent back to the app.
+
+### Layer III - Backend Services (Specialized Microservices)
+
+This layer consists of specialized microservices that handle distinct functionalities, including eKYC verification, document processing, speech-to-text conversion, payment processing, and notification services.
+
+1. **eKYC Services:**
+    - OTP Verification:
+        - Dual-channel (SMS/Email) OTP delivery via AWS SNS and SES.
+        - OTP stored in MongoDB with 5-minute expiry.
+    - Facial Recognition:
+        - Compares selfie from S3 with ID photo using AWS Rekognition.
+        - Returns similarity score and verification decision.
+    - Document Validation:
+        - Uses AWS Textract for OCR text extraction.
+        - Validates extracted text against government templates (e.g., license number, NRIC format).
+
+2. **Chabot Services:**
+    - Audio Transcription Service:
+        - Uses AWS Transcribe to convert user speech to text.
+        - Text is passed to the LLM agent for natural language understanding.
+    - Document Analysis and Text Extraction:
+        - AWS Textract → AWS Lambda parsing → MongoDB Vstore.
+        - Extracted text is summarized or verified through the MCP and displayed to user.
+    - Receipt and PDF Generator:
+        - AWS Lambda compiles templates and stores PDFs in S3.
+        - URLs are shared in chat for download or verification.
+    - Notification Service:
+        - Scheduled AWS EventBridge + Lambda send reminders (due bills, expiry dates).
+        - Notifications are stored in MongoDB and pushed to frontend.
+
+3. **Payment Services:**
+    - Bill Creation (Billplz Integration):
+        - Lambda creates bills through Billplz API with metadata (amount, user ID, service type).
+        - Frontend receives the payment URL and opens in WebView.
+    - Payment Webhook Handling:
+        - Billplz sends callback → AWS Lambda verifies payment → MongoDB updates transaction status.
+        - Trigger receipt generation via PDF service.
+
+### Layer IV - Database (Data Storage)
+
+All data persistence is managed by MongoDB Atlas, providing a fully managed NoSQL environment with auto-scaling and TTL-based cleanup.
+
+- Store **governmental user profiles**, conversation history, payment transactions, and other metadata.
+- **Data Lifecycle Management:**
+    - Atlas Triggers automate periodic cleanup (e.g., delete expired OTPs).
+    - TTL Indexes ensure transient data (chat sessions, OTPs) auto-expire after 7 days.
+    - Scheduled Aggregations perform data normalization for reporting dashboards.
+- **Integration Points:**
+    - MongoDB Realm Triggers → AWS Lambda (event-driven updates)
+    - Backend MCP fetches and updates documents via Atlas Data API
+    - Indexed searches accelerate eKYC lookups and document matching.
 
 ## 🗺️ Architecture Diagram
 <!-- ![Architecture Diagram](assets/Full_Architectural_Diagram.png) -->
