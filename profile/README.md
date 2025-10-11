@@ -1,4 +1,4 @@
-# MyGovHub
+# MyGov Hub
 
 <img src="assets/MyGovHub-Logo-Dark.png" alt="The full Architecture Diagram of this system" height="400"/>
 
