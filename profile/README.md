@@ -158,9 +158,8 @@ All data persistence is managed by MongoDB Atlas, providing a fully managed NoSQ
 
 - **Cost-Optimized Backend**: Built on serverless and pay-per-use architecture to minimize operational costs and maximize efficiency.
 
-
 ## 📱 MyGovHub Interface Overview
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; flex-direction: row">
 
   <div style="text-align: center;">
     <img src="assets/interface_entry_page.jpeg" alt="Welcome Page" height="400" style="border:none; outline:none;"/><br/>
