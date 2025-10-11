@@ -159,24 +159,22 @@ All data persistence is managed by MongoDB Atlas, providing a fully managed NoSQ
 - **Cost-Optimized Backend**: Built on serverless and pay-per-use architecture to minimize operational costs and maximize efficiency.
 
 ## 📱 MyGovHub Interface Overview
-<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap; flex-direction: row">
-
-  <div style="text-align: center;">
-    <img src="assets/interface_entry_page.jpeg" alt="Welcome Page" height="400" style="border:none; outline:none;"/><br/>
-    <b>Welcome Page</b>
-  </div>
-
-  <div style="text-align: center;">
-    <img src="assets/interface_chatbot.jpeg" alt="Chatbot Screen" height="400" style="border:none; outline:none;"/><br/>
-    <b>Chatbot Conversation</b>
-  </div>
-
-  <div style="text-align: center;">
-    <img src="assets/interface_settings.jpeg" alt="Settings Page" height="400" style="border:none; outline:none;"/><br/>
-    <b>Settings Page</b>
-  </div>
-
-</div>
+<table style="border-collapse: collapse; border: none;">
+  <tr>
+    <td align="center" style="border: none;">
+      <img src="assets/interface_entry_page.jpeg" alt="Welcome Page" height="400" style="border:none; outline:none;"/><br/>
+      <b>Welcome Page</b>
+    </td>
+    <td align="center" style="border: none;">
+      <img src="assets/interface_chatbot.jpeg" alt="Chatbot Screen" height="400" style="border:none; outline:none;"/><br/>
+      <b>Chatbot Conversation</b>
+    </td>
+    <td align="center" style="border: none;">
+      <img src="assets/interface_settings.jpeg" alt="Settings Page" height="400" style="border:none; outline:none;"/><br/>
+      <b>Settings Page</b>
+    </td>
+  </tr>
+</table>
 
 
 
