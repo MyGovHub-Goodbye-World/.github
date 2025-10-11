@@ -1,6 +1,6 @@
 # MyGovHub
 
-<img src="assets/MyGovHub-Logo-Dark.png" alt="The full Architecture Diagram of this system"/>
+<img src="assets/MyGovHub-Logo-Dark.png" alt="The full Architecture Diagram of this system" height="400"/>
 
 
 ## 📘 Project Overview
@@ -170,8 +170,12 @@ All data persistence is managed by MongoDB Atlas, providing a fully managed NoSQ
       <b>Chatbot Conversation</b>
     </td>
     <td align="center" style="border: none;">
-      <img src="assets/interface_settings.jpeg" alt="Settings Page" height="400" style="border:none; outline:none;"/><br/>
+      <img src="assets/interface_settings_page.jpeg" alt="Settings Page" height="400" style="border:none; outline:none;"/><br/>
       <b>Settings Page</b>
+    </td>
+    <td align="center" style="border: none;">
+      <img src="assets/interface_sizebar.jpeg" alt="Settings Page" height="400" style="border:none; outline:none;"/><br/>
+      <b>Size Bar</b>
     </td>
   </tr>
 </table>
