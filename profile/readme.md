@@ -27,7 +27,6 @@ MyGov Hub addresses these issues by unifying multiple services into one accessib
 
 
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      
 
 ## ⚙️ Technical Architecture
 MyGov Hub's architecture is a multi-layered, serverless system designed for efficient processing of user requests, particularly those involving document analysis and voice commands.
@@ -47,7 +46,8 @@ MyGov Hub's architecture is a multi-layered, serverless system designed for effi
 
 
 ## 🗺️ Architecture Diagram
-![Architecture Diagram](assets/Full_Architectural_Diagram.png)
+<!-- ![Architecture Diagram](assets/Full_Architectural_Diagram.png) -->
+<img src="assets/Full_Architectural_Diagram.png" alt="The full Architecture Diagram of this system"/>
 
 
 
@@ -68,15 +68,11 @@ MyGov Hub's architecture is a multi-layered, serverless system designed for effi
 
 
 ## 📱 MyGovHub Interface Overview
-add screenshot here
+<!-- ![Welcome Page](assets/interface_entry_page.jpeg) -->
+<img src="assets/interface_entry_page.jpeg" alt="Screenshot of the applications's welcome page" height="600"/>
 
-add screenshot here
-
-add screenshot here
-
-add screenshot here
-
-add screenshot here
+<!-- ![Chatbot](assets/interface_chatbot.jpeg) -->
+<img src="assets/interface_chatbot.jpeg" alt="Screenshot of chatting wiht the chatbot" height="600"/>
 
 
 ## 🧩 Systems and Repositories
@@ -88,7 +84,7 @@ add screenshot here
 | 4 | [Document Ingestion and Text Extraction Service](https://github.com/MyGovHub-Goodbye-World/document-ingestion-and-text-extraction) | A comprehensive document analysis tool that combines AWS Textract, Bedrock, and intelligent blur detection. Available as both CLI and serverless Lambda API. |
 | 5 | [OTP Verification API](https://github.com/MyGovHub-Goodbye-World/otp-verification-api) | A serverless API providing a complete solution for sending and verifying one-time passwords (OTPs) via both SMS and email. It is built to be deployed on AWS and leverages AWS Lambda, API Gateway, SNS for SMS, and SES for email notifications. OTP records are stored and managed in a MongoDB database.|
 | 6 | [Face Recognition API](https://github.com/MyGovHub-Goodbye-World/face-rekon-api) | A Serverless API providing a complete AWS-based solution for comparing faces and analyzing selfie image quality using Amazon Rekognition. It is designed to help verify user identity by comparing a selfie photo with an ID card image stored in Amazon S3.|
-| 7 | [Notification Service](https://github.com/MyGovHub-Goodbye-World/notification-greatai) | A serverless AWS Lambda service that proactively scans MongoDB for overdue bills and license expirations, generating alerts that can be fetched by the user-facing chatbot.|
+| 7 | [Notification Service](https://github.com/MyGovHub-Goodbye-World/notification-greatai) | AWS Lambda function which fetches data from MongoDB, notifying MyGovHub users about upcoming & overdue bill payments or documentation renewal reminders. Setup includes 2 seperate AWS Lambda functions.|
 | 8 | [S3 Upload API Service](https://github.com/MyGovHub-Goodbye-World/s3-api) | A serverless file upload service built with AWS Lambda, API Gateway, and S3. This service allows you to upload files to S3 and get pre-signed download URLs. |
 | 9 | [AWS Transcribe API Service](https://github.com/MyGovHub-Goodbye-World/transcribe-api) | A serverless AWS Lambda function that provides multi-language audio/video transcription services using AWS Transcribe. This service supports English, Chinese, Malay, and Indonesian languages and accepts S3 URLs for audio/video files. |
 | 10 | [PDF Receipt Generator API](https://github.com/MyGovHub-Goodbye-World/transcribe-api) | A serverless AWS Lambda function that generates PDF receipts for TNB bills, driving licenses, and transactions. The API processes JSON data and returns secure, time-limited download URLs for generated PDF receipts. |
