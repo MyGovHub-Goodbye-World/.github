@@ -1,6 +1,6 @@
 # MyGovHub
 
-![Architecture Diagram](assets/MyGovHub-Logo-Dark.png)
+<img src="assets/MyGovHub-Logo-Dark.png" alt="The full Architecture Diagram of this system"/>
 
 
 ## 📘 Project Overview
@@ -68,11 +68,26 @@ MyGov Hub's architecture is a multi-layered, serverless system designed for effi
 
 
 ## 📱 MyGovHub Interface Overview
-<!-- ![Welcome Page](assets/interface_entry_page.jpeg) -->
-<img src="assets/interface_entry_page.jpeg" alt="Screenshot of the applications's welcome page" height="600"/>
+<div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
 
-<!-- ![Chatbot](assets/interface_chatbot.jpeg) -->
-<img src="assets/interface_chatbot.jpeg" alt="Screenshot of chatting wiht the chatbot" height="600"/>
+  <div style="text-align: center;">
+    <img src="assets/interface_entry_page.jpeg" alt="Welcome Page" height="400" style="border:none; outline:none;"/><br/>
+    <b>Welcome Page</b>
+  </div>
+
+  <div style="text-align: center;">
+    <img src="assets/interface_chatbot.jpeg" alt="Chatbot Screen" height="400" style="border:none; outline:none;"/><br/>
+    <b>Chatbot Conversation</b>
+  </div>
+
+  <div style="text-align: center;">
+    <img src="assets/interface_settings.jpeg" alt="Settings Page" height="400" style="border:none; outline:none;"/><br/>
+    <b>Settings Page</b>
+  </div>
+
+</div>
+
+
 
 
 ## 🧩 Systems and Repositories
