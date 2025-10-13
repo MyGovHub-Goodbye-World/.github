@@ -1,7 +1,7 @@
 # MyGov Hub
 
-<div style="text-align: center;"
-    <img src="assets/MyGovHub-Logo-Dark.png" style="" alt="The full Architecture Diagram of this system" height="150"/>
+<div align="center" style="border: none;">
+<img src="assets/MyGovHub-Logo-Dark.png" alt="The full Architecture Diagram of this system" height="150"/>
 </div>
 
 ## 📘 Project Overview
