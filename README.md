@@ -259,3 +259,14 @@ It’s simple, scalable, and human-friendly, designed to:
 - 💰 Reduce government expenses
 - 🌐 Accelerate digital-first adoption
 
+## 👥 Project Team
+
+**MyGov Hub** is the result of a dedicated, multidisciplinary team, each member bringing unique expertise to deliver a seamless and innovative platform:
+
+| Name | Role | Key Contributions |
+|------|------|-------------------|
+| [Lee Ming Jia](https://github.com/mjlee01) | Team Lead / UI & UX | Led frontend development and UI/UX design. Built the Billplz payment gateway (AWS Lambda) and designed the entire application interface. |
+| [Lim Wen Hao](https://github.com/WenHao1223) | Tech Lead / AI Specialist | Architected backend and AI integration. Developed the core conversational chatbot platform using AWS Bedrock, AWS Textract, AWS Lambda, and MongoDB. |
+| [Tan Jun Cheng](https://github.com/Jccc03) | Business Strategy Lead | Crafted and presented the business case, ensuring a compelling narrative and clear value proposition. |
+| [Lim Kang Wei](https://github.com/lk-wei) | eKYC Specialist | Developed eKYC microservices, including OTP validation, face recognition, and document verification for robust user authentication. |
+| [Ivan Soo Chee Yang](https://github.com/ivan-soo) | Core Services Specialist | Engineered core business logic, including the Report Generation API and a comprehensive Notification API (SMS, Email, In-App). |
