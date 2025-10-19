@@ -8,6 +8,8 @@
 
 **MyGov Hub** is an AI-powered government assistant designed to unify fragmented online services into one secure, conversational platform. Instead of juggling multiple apps and websites, citizens can renew licenses, pay utility bills, check summons, or even snap a photo of a document, all within a single hub. With support for both text and voice, MyGov Hub makes public services as easy as chatting with an officer.
 
+<img src="assets/interface_overview.png" alt="A Project Interface Overview"/>
+
 © 2025 Goodbye World team, for Great AI Hackathon Malaysia 2025 usage.
 
 ## 🚨 Problem Statement
